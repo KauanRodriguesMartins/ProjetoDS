@@ -1,7 +1,18 @@
+using ProjetoDS.Data;
+using ProjetoDS.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+string mySqlConnection = builder.Configuration.GetConnectionString("DefaultDatabase");
+builder.Services.AddDbContext<BibliotecaContext>(opt => {opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection));});
+
+builder.Services.AddScoped<IBibliotecaRepository, BibliotecaRepository>();
+
 
 var app = builder.Build();
 

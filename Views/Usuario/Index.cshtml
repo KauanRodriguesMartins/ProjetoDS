@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Lista de usuarios";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de usuarios</h1>
+</div>
+
+<table class="table mt-4 p-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>mdo</td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-success" asp-controller="Usuario" asp-action="Adicionar">Adicionar</a>
+<a class="btn btn-warning" asp-controller="Usuario" asp-action="Editar">Editar</a>
+<a class="btn btn-danger" asp-controller="Usuario" asp-action="Excluir">Excluir</a>
