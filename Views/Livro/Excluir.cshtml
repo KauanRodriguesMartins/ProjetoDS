@@ -1,3 +1,5 @@
+@model LivroModel
+
 @{
     ViewData["Title"] = "Excluir livro";
 }
@@ -6,9 +8,11 @@
     <h1 class="display-4">Excluir livro</h1>
 </div>
 
-<form class="mt-4 p-3">
-  <h1>Realmente deseja deletar [placholder para model] ?</h1>
+<form class="mt-4 p-3" asp-controller="Livro" asp-action="Deletar" method="post">
+  <h1>Realmente deseja deletar @Model.Titulo ?</h1>
 
-  <button type="submit" class="btn btn-success">Adicionar</button>
+  <input type="hidden" asp-for="Id">
+
+  <button type="submit" class="btn btn-success">Confirmar</button>
   <a class="btn btn-secondary" asp-action="Index" asp-controller="Livro">Voltar</a>
 </form>

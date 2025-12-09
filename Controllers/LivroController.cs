@@ -22,17 +22,40 @@ public class LivroController : Controller
         return View(livro);
     }
 
+
+    [HttpPost]
+    public IActionResult Criar(LivroModel livro)
+    {
+        biblioteca_repository.Adicionar(livro);
+        return RedirectToAction("Index");
+    }
     public IActionResult Adicionar()
     {
         return View();
     }
-    public IActionResult Editar()
+
+    [HttpPost]
+    public IActionResult Atualizar(LivroModel livro)
     {
-        return View();
+        biblioteca_repository.Atualizar(livro);
+        return RedirectToAction("Index");
     }
-    public IActionResult Excluir()
+    public IActionResult Editar(int Id)
     {
-        return View();
+        var livro = biblioteca_repository.BuscarId(Id);
+        return View(livro);
+    }
+
+    [HttpPost]
+    public IActionResult Deletar (int Id)
+    {
+        biblioteca_repository.Deletar(Id);
+        return RedirectToAction("Index");
+    }
+    public IActionResult Excluir(int Id)
+    {
+        var livro = biblioteca_repository.BuscarId(Id);
+        return View(livro);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

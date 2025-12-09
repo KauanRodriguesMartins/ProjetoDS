@@ -1,39 +1,70 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoDS.Models;
+using ProjetoDS.Repository;
+using System.Diagnostics;
 
-namespace ProjetoDS.Controllers;
-
-public class EmprestimoController : Controller
+namespace ProjetoDS.Controllers
 {
-    private readonly ILogger<EmprestimoController> _logger;
+    public class EmprestimoController : Controller
+    {
+        private readonly IBibliotecaRepository _repository;
 
-    public EmprestimoController(ILogger<EmprestimoController> logger)
-    {
-        _logger = logger;
-    }
+        public EmprestimoController(IBibliotecaRepository repository)
+        {
+            _repository = repository;
+        }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            var emprestimos = _repository.ListarEmprestimos();
+            return View(emprestimos);
+        }
 
-    public IActionResult Adicionar()
-    {
-        return View();
-    }
-    public IActionResult Editar()
-    {
-        return View();
-    }
-    public IActionResult Excluir()
-    {
-        return View();
-    }
+        public IActionResult Adicionar()
+        {
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [HttpPost]
+        public IActionResult Criar(EmprestimoModel emprestimo)
+        {
+            _repository.AdicionarEmprestimo(emprestimo);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Editar(int Id)
+        {
+            var emprestimo = _repository.BuscarEmprestimoPorId(Id);
+            return View(emprestimo);
+        }
+
+        [HttpPost]
+        public IActionResult Atualizar(EmprestimoModel emprestimo)
+        {
+            _repository.AtualizarEmprestimo(emprestimo);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Excluir(int Id)
+        {
+            var emprestimo = _repository.BuscarEmprestimoPorId(Id);
+            return View(emprestimo);
+        }
+
+        [HttpPost]
+        public IActionResult Deletar(int Id)
+        {
+            _repository.DeletarEmprestimo(Id);
+            return RedirectToAction("Index");
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel 
+            { 
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+            });
+        }
     }
 }

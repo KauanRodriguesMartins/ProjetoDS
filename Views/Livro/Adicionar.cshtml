@@ -1,3 +1,5 @@
+@model LivroModel
+
 @{
     ViewData["Title"] = "Adicionar livro";
 }
@@ -6,25 +8,37 @@
     <h1 class="display-4">Adicionar livro</h1>
 </div>
 
-<form class="mt-4 p-3">
+<form class="mt-4 p-3" asp-controller="Livro" asp-action="Criar" method="post">
   <div class="mb-3">
     <label for="exampleInputTitleBook" class="form-label">Titulo do livro</label>
-    <input type="text" class="form-control" id="exampleInputTitleBook">
+    <input type="text" asp-for="Titulo" class="form-control" id="exampleInputTitleBook">
   </div>
 
   <div class="mb-3">
     <label for="exampleInputAutor" class="form-label">Autor</label>
-    <input type="text" class="form-control" id="exampleInputAutor">
+    <input type="text" asp-for="Autor" class="form-control" id="exampleInputAutor">
   </div>
 
   <div class="mb-3">
-    <label for="exampleInputPages" class="form-label">Páginas</label>
-    <input type="number" class="form-control" id="exampleInputPages">
+    <label for="exampleInputAP" class="form-label">Ano de publicação</label>
+    <input type="number" asp-for="AnoPublicacao" class="form-control" id="exampleInputAP">
   </div>
 
-   <label for="exampleInputStatus" class="form-label">Status</label>
-    <input type="text" class="form-control" id="exampleInputStatus">
+  <div class="mb-3">
+    <label for="exampleInputG" class="form-label">Gênero</label>
+    <input type="text" asp-for="Genero" class="form-control" id="exampleInputG">
   </div>
+
+  <div class="mb-3">
+    <label for="exampleInputQD" class="form-label">Quantidade disponível</label>
+    <input type="number" asp-for="QuantidadeDisponivel" class="form-control" id="exampleInputQD">
+  </div>
+
+   <div class="mb-3">
+    <label for="exampleInputStatus" class="form-label">Status</label>
+    <input type="text" asp-for="Status" class="form-control" id="exampleInputStatus">
+  </div>
+
 
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
