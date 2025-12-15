@@ -1,30 +1,32 @@
-﻿@{
-    ViewData["Title"] = "Lista de emprestimos";
-}
+﻿@model List<EmprestimoModel>
 
-<div class="text-center">
-    <h1 class="display-4">Lista de emprestimos</h1>
-</div>
+<h1>Empréstimos</h1>
 
-<table class="table mt-4 p-3">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-    </tr>
-  </tbody>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Livro</th>
+            <th>Usuário</th>
+            <th>Data Empréstimo</th>
+            <th>Data Devolução</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.Livro.Titulo</td>
+                <td>@e.Usuario.Nome</td>
+                <td>@e.DataEmprestimo.ToShortDateString()</td>
+                <td>@(e.DataDevolucao?.ToShortDateString() ?? "Em aberto")</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@e.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Excluir" asp-route-id="@e.Id" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-<a class="btn btn-success" asp-controller="Emprestimo" asp-action="Adicionar">Adicionar</a>
-<a class="btn btn-warning" asp-controller="Emprestimo" asp-action="Editar">Editar</a>
-<a class="btn btn-danger" asp-controller="Emprestimo" asp-action="Excluir">Excluir</a>
+<a asp-action="Adicionar" class="btn btn-success">Novo Empréstimo</a>

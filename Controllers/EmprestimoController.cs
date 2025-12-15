@@ -22,6 +22,8 @@ namespace ProjetoDS.Controllers
 
         public IActionResult Adicionar()
         {
+            ViewBag.Livros = _repository.ListarLivros();
+            ViewBag.Usuarios = _repository.ListarUsuarios();
             return View();
         }
 
@@ -34,6 +36,9 @@ namespace ProjetoDS.Controllers
 
         public IActionResult Editar(int Id)
         {
+            ViewBag.Livros = _repository.ListarLivros();
+            ViewBag.Usuarios = _repository.ListarUsuarios();
+
             var emprestimo = _repository.BuscarEmprestimoPorId(Id);
             return View(emprestimo);
         }
@@ -61,9 +66,9 @@ namespace ProjetoDS.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel 
-            { 
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }
     }

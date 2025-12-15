@@ -1,14 +1,18 @@
+@model UsuarioModel
+
 @{
-    ViewData["Title"] = "Excluir usuario";
+    ViewData["Title"] = "Excluir Usuario";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Excluir usuario</h1>
+    <h1 class="display-4">Excluir Usuario</h1>
 </div>
 
-<form class="mt-4 p-3">
-  <h1>Realmente deseja deletar [placholder para model] ?</h1>
+<form class="mt-4 p-3" asp-controller="Usuario" asp-action="Deletar" method="post">
+  <h1>Realmente deseja deletar @Model.Nome ?</h1>
 
-  <button type="submit" class="btn btn-success">Adicionar</button>
+  <input type="hidden" asp-for="Id">
+
+  <button type="submit" class="btn btn-success">Confirmar</button>
   <a class="btn btn-secondary" asp-action="Index" asp-controller="Usuario">Voltar</a>
 </form>

@@ -1,30 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Lista de usuarios";
+﻿@model List<UsuarioModel>
+
+@{
+    ViewData["Title"] = "Lista de usuario";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Lista de usuarios</h1>
+    <h1 class="display-4">Lista de usuario</h1>
 </div>
 
 <table class="table mt-4 p-3">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cpf</th>
+      <th scope="col">Idade</th>
     </tr>
   </thead>
   <tbody>
+  @if(Model != null && Model.Any()){
+    foreach(UsuarioModel usuario in Model){    
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
+      <th scope="row">@usuario.Id</th>
+      <td>@usuario.Nome</td>
+      <td>@usuario.CPF</td>
+      <td>@usuario.Idade</td>
+      <td>
+        <a class="btn btn-warning" asp-action="Editar" asp-route-id="@usuario.Id">Editar</a>
+        <a class="btn btn-danger" asp-action="Excluir" asp-route-id="@usuario.Id">Excluir</a>
+      </td>
     </tr>
+    }
+  }
   </tbody>
 </table>
 
 <a class="btn btn-success" asp-controller="Usuario" asp-action="Adicionar">Adicionar</a>
-<a class="btn btn-warning" asp-controller="Usuario" asp-action="Editar">Editar</a>
-<a class="btn btn-danger" asp-controller="Usuario" asp-action="Excluir">Excluir</a>
+

@@ -1,14 +1,35 @@
+@model EmprestimoModel
+
 @{
-    ViewData["Title"] = "Excluir emprestimo";
+    ViewData["Title"] = "Excluir Empréstimo";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Excluir emprestimo</h1>
+    <h1 class="display-4">Excluir Empréstimo</h1>
 </div>
 
-<form class="mt-4 p-3">
-  <h1>Realmente deseja deletar emprestimo [placholder para model] ?</h1>
+<form asp-action="Deletar" method="post" class="mt-4 p-3">
 
-  <button type="submit" class="btn btn-success">Adicionar</button>
-  <a class="btn btn-secondary" asp-action="Index" asp-controller="Emprestimo">Voltar</a>
+    <input type="hidden" asp-for="Id" />
+
+    <p>
+        Tem certeza que deseja excluir o empréstimo do livro
+        <strong>@Model.Livro.Titulo</strong>
+        para o usuário
+        <strong>@Model.Usuario.Nome</strong>?
+    </p>
+
+    <p>
+        Data do empréstimo:
+        <strong>@Model.DataEmprestimo.ToShortDateString()</strong>
+    </p>
+
+    <p>
+        Data de devolução:
+        <strong>@(Model.DataDevolucao?.ToShortDateString() ?? "Em aberto")</strong>
+    </p>
+
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
 </form>
