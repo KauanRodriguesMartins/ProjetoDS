@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using ProjetoDS.Models;
 
 namespace ProjetoDS.Data
 {
-    public class BibliotecaContext : IdentityDbContext
+    public class BibliotecaContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public BibliotecaContext(DbContextOptions<BibliotecaContext> options)
             : base(options)

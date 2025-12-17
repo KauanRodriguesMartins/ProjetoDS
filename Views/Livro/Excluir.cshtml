@@ -4,15 +4,19 @@
     ViewData["Title"] = "Excluir livro";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Excluir livro</h1>
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-danger">Excluir livro</h1>
+    </div>
+
+    <form class="p-4 bg-white rounded shadow-sm text-center" asp-controller="Livro" asp-action="Deletar" method="post">
+        <h4 class="mb-4">Realmente deseja deletar <strong>@Model.Titulo</strong>?</h4>
+
+        <input type="hidden" asp-for="Id">
+
+        <div class="d-flex justify-content-center gap-3">
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Livro">Voltar</a>
+        </div>
+    </form>
 </div>
-
-<form class="mt-4 p-3" asp-controller="Livro" asp-action="Deletar" method="post">
-  <h1>Realmente deseja deletar @Model.Titulo ?</h1>
-
-  <input type="hidden" asp-for="Id">
-
-  <button type="submit" class="btn btn-success">Confirmar</button>
-  <a class="btn btn-secondary" asp-action="Index" asp-controller="Livro">Voltar</a>
-</form>

@@ -4,43 +4,45 @@
     ViewData["Title"] = "Lista de livros";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Lista de livros</h1>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4 text-primary">Lista de livros</h1>
+        <a class="btn btn-success" asp-controller="Livro" asp-action="Adicionar">Adicionar</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover shadow-sm bg-white rounded">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Ano</th>
+                    <th scope="col">Gênero</th>
+                    <th scope="col">Qtd disponível</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @if(Model != null && Model.Any()){
+                foreach(LivroModel livro in Model){    
+                <tr>
+                    <th scope="row">@livro.Id</th>
+                    <td>@livro.Titulo</td>
+                    <td>@livro.Autor</td>
+                    <td>@livro.AnoPublicacao</td>
+                    <td>@livro.Genero</td>
+                    <td>@livro.QuantidadeDisponivel</td>
+                    <td>@livro.Status</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm me-1" asp-action="Editar" asp-route-id="@livro.Id">Editar</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Excluir" asp-route-id="@livro.Id">Excluir</a>
+                    </td>
+                </tr>
+                }
+            }
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table class="table mt-4 p-3">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Titulo</th>
-      <th scope="col">Autor</th>
-      <th scope="col">Ano de publicação</th>
-      <th scope="col">Gênero</th>
-      <th scope="col">Quantidade disponível</th>
-      <th scope="col">Status</th>
-      <th scope="col">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-  @if(Model != null && Model.Any()){
-    foreach(LivroModel livro in Model){    
-    <tr>
-      <th scope="row">@livro.Id</th>
-      <td>@livro.Titulo</td>
-      <td>@livro.Autor</td>
-      <td>@livro.AnoPublicacao</td>
-      <td>@livro.Genero</td>
-      <td>@livro.QuantidadeDisponivel</td>
-      <td>@livro.Status</td>
-      <td>
-        <a class="btn btn-warning" asp-action="Editar" asp-route-id="@livro.Id">Editar</a>
-        <a class="btn btn-danger" asp-action="Excluir" asp-route-id="@livro.Id">Excluir</a>
-      </td>
-    </tr>
-    }
-  }
-  </tbody>
-</table>
-
-<a class="btn btn-success" asp-controller="Livro" asp-action="Adicionar">Adicionar</a>
-

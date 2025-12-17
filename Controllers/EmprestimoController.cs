@@ -2,11 +2,16 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoDS.Models;
 using ProjetoDS.Repository;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+
+
 
 namespace ProjetoDS.Controllers
 {
+    [Authorize]
     public class EmprestimoController : Controller
     {
+        
         private readonly IBibliotecaRepository _repository;
 
         public EmprestimoController(IBibliotecaRepository repository)
@@ -20,6 +25,7 @@ namespace ProjetoDS.Controllers
             return View(emprestimos);
         }
 
+        [Authorize]
         public IActionResult Adicionar()
         {
             ViewBag.Livros = _repository.ListarLivros();
@@ -34,6 +40,7 @@ namespace ProjetoDS.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult Editar(int Id)
         {
             ViewBag.Livros = _repository.ListarLivros();
@@ -50,6 +57,7 @@ namespace ProjetoDS.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult Excluir(int Id)
         {
             var emprestimo = _repository.BuscarEmprestimoPorId(Id);

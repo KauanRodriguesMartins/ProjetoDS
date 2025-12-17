@@ -1,35 +1,33 @@
 @model EmprestimoModel
 
-@{
-    ViewData["Title"] = "Excluir Empréstimo";
-}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4 text-danger">Excluir Empréstimo</h1>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Excluir Empréstimo</h1>
+    <form class="p-4 bg-white rounded shadow-sm text-center" asp-action="Deletar" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <p class="mb-2">
+            Tem certeza que deseja excluir o empréstimo do livro
+            <strong>@Model.Livro.Titulo</strong>
+            para o usuário
+            <strong>@Model.Usuario.Nome</strong>?
+        </p>
+
+        <p class="mb-2">
+            Data do empréstimo:
+            <strong>@Model.DataEmprestimo.ToShortDateString()</strong>
+        </p>
+
+        <p class="mb-4">
+            Data de devolução:
+            <strong>@(Model.DataDevolucao?.ToShortDateString() ?? "Em aberto")</strong>
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
 </div>
-
-<form asp-action="Deletar" method="post" class="mt-4 p-3">
-
-    <input type="hidden" asp-for="Id" />
-
-    <p>
-        Tem certeza que deseja excluir o empréstimo do livro
-        <strong>@Model.Livro.Titulo</strong>
-        para o usuário
-        <strong>@Model.Usuario.Nome</strong>?
-    </p>
-
-    <p>
-        Data do empréstimo:
-        <strong>@Model.DataEmprestimo.ToShortDateString()</strong>
-    </p>
-
-    <p>
-        Data de devolução:
-        <strong>@(Model.DataDevolucao?.ToShortDateString() ?? "Em aberto")</strong>
-    </p>
-
-    <button type="submit" class="btn btn-danger">Confirmar</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-
-</form>
