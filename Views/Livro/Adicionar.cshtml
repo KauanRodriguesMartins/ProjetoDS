@@ -1,53 +1,47 @@
 @model LivroModel
-
 @{
     ViewData["Title"] = "Adicionar livro";
 }
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 700px;">
     <div class="text-center mb-4">
-        <h1 class="display-4 text-primary">Adicionar livro</h1>
+        <h1 class="display-4" style="font-family: 'Georgia', serif; color: #2c3e50;">Adicionar Livro</h1>
     </div>
 
-    <form class="p-4 bg-white rounded shadow-sm" asp-controller="Livro" asp-action="Criar" method="post">
+    <form class="p-4 rounded shadow" asp-controller="Livro" asp-action="Criar" method="post" style="background-color: #e8d5b7;">
         <div class="mb-3">
-            <label class="form-label">Título do livro</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Título do livro</label>
             <input type="text" asp-for="Titulo" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Autor</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Autor</label>
             <input type="text" asp-for="Autor" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Ano de publicação</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Ano de publicação</label>
             <input type="number" asp-for="AnoPublicacao" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Gênero</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Gênero</label>
             <input type="text" asp-for="Genero" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Quantidade disponível</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Quantidade disponível</label>
             <input type="number" asp-for="QuantidadeDisponivel" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Status</label>
+            <label class="form-label" style="font-weight: bold; color: #4d3d2f;">Status</label>
             <input type="text" asp-for="Status" class="form-control">
         </div>
 
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-success">Confirmar</button>
-            <a class="btn btn-secondary" asp-action="Index" asp-controller="Livro">Voltar</a>
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn" style="background-color: #2c3e50; color: #fdf6e3;">Confirmar</button>
+            <a class="btn" asp-action="Index" asp-controller="Livro" style="background-color: #800000; color: #fdf6e3;">Voltar</a>
         </div>
     </form>
 </div>

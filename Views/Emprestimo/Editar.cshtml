@@ -1,15 +1,18 @@
 @model EmprestimoModel
+@{
+    ViewData["Title"] = "Editar Empréstimo";
+}
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 700px;">
     <div class="text-center mb-4">
-        <h1 class="display-4 text-primary">Editar Empréstimo</h1>
+        <h1 class="display-4" style="font-family: 'Georgia', serif; color: #2c3e50;">Editar Empréstimo</h1>
     </div>
 
-    <form class="p-4 bg-white rounded shadow-sm" asp-action="Atualizar" method="post">
+    <form class="p-4 rounded shadow" asp-action="Atualizar" method="post" style="background-color: #e8d5b7;">
         <input type="hidden" asp-for="Id" />
 
         <div class="mb-3">
-            <label class="form-label">Livro</label>
+            <label class="form-label" style="font-weight:bold; color:#4d3d2f;">Livro</label>
             <select asp-for="LivroId" class="form-control">
                 @foreach (var livro in ViewBag.Livros)
                 {
@@ -19,7 +22,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Usuário</label>
+            <label class="form-label" style="font-weight:bold; color:#4d3d2f;">Usuário</label>
             <select asp-for="UsuarioId" class="form-control">
                 @foreach (var usuario in ViewBag.Usuarios)
                 {
@@ -29,18 +32,18 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Data do Empréstimo</label>
+            <label class="form-label" style="font-weight:bold; color:#4d3d2f;">Data do Empréstimo</label>
             <input type="date" asp-for="DataEmprestimo" class="form-control" />
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Data de Devolução</label>
+            <label class="form-label" style="font-weight:bold; color:#4d3d2f;">Data de Devolução</label>
             <input type="date" asp-for="DataDevolucao" class="form-control" />
         </div>
 
-        <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-success">Atualizar</button>
-            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn" style="background-color: #2c3e50; color: #fdf6e3;">Atualizar</button>
+            <a asp-action="Index" class="btn" style="background-color: #800000; color: #fdf6e3;">Voltar</a>
         </div>
     </form>
 </div>

@@ -1,33 +1,23 @@
 @model EmprestimoModel
+@{
+    ViewData["Title"] = "Excluir Empréstimo";
+}
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 700px;">
     <div class="text-center mb-4">
-        <h1 class="display-4 text-danger">Excluir Empréstimo</h1>
+        <h1 class="display-4" style="font-family: 'Georgia', serif; color: #800000;">Excluir Empréstimo</h1>
     </div>
 
-    <form class="p-4 bg-white rounded shadow-sm text-center" asp-action="Deletar" method="post">
+    <form class="p-4 rounded shadow text-center" asp-action="Deletar" method="post" style="background-color: #e8d5b7;">
         <input type="hidden" asp-for="Id" />
 
-        <p class="mb-2">
-            Tem certeza que deseja excluir o empréstimo do livro
-            <strong>@Model.Livro.Titulo</strong>
-            para o usuário
-            <strong>@Model.Usuario.Nome</strong>?
-        </p>
+        <p style="color:#4d3d2f;">Deseja realmente excluir o empréstimo do livro <strong>@Model.Livro.Titulo</strong> para o usuário <strong>@Model.Usuario.Nome</strong>?</p>
+        <p style="color:#4d3d2f;">Data do empréstimo: <strong>@Model.DataEmprestimo.ToShortDateString()</strong></p>
+        <p style="color:#4d3d2f;">Data de devolução: <strong>@(Model.DataDevolucao?.ToShortDateString() ?? "Em aberto")</strong></p>
 
-        <p class="mb-2">
-            Data do empréstimo:
-            <strong>@Model.DataEmprestimo.ToShortDateString()</strong>
-        </p>
-
-        <p class="mb-4">
-            Data de devolução:
-            <strong>@(Model.DataDevolucao?.ToShortDateString() ?? "Em aberto")</strong>
-        </p>
-
-        <div class="d-flex justify-content-center gap-3">
-            <button type="submit" class="btn btn-danger">Confirmar</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <button type="submit" class="btn" style="background-color: #800000; color: #fdf6e3;">Confirmar</button>
+            <a asp-action="Index" class="btn" style="background-color: #2c3e50; color: #fdf6e3;">Cancelar</a>
         </div>
     </form>
 </div>
