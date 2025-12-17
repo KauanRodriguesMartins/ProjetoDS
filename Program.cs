@@ -2,6 +2,8 @@ using ProjetoDS.Data;
 using ProjetoDS.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews();
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultDatabase");
 builder.Services.AddDbContext<BibliotecaContext>(opt => {opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection));});
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<BibliotecaContext>();
 
 builder.Services.AddScoped<IBibliotecaRepository, BibliotecaRepository>();
 
@@ -29,6 +33,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
